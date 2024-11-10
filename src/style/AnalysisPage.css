@@ -1,0 +1,227 @@
+
+
+.analysis-page {
+  font-family: Arial, sans-serif;
+  padding-left: 80px;
+  padding-right: 80px;
+  color: #333;
+}
+
+.headerh1 {
+  padding:0;
+  color: rgb(48, 49, 51);
+}
+.header {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  height: 20px; /* 필요한 높이로 조정 */
+  background-color: rgb(200, 224, 243);
+  margin: 0;
+  padding: 20px;
+}
+
+.header h1 {
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.back-link {
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  justify-content: flex-start;
+  margin: 15px;
+}
+
+.go-back {
+  font-size: 14px;
+  color: rgb(117, 117, 117);
+}
+.forecast {
+  display: flex; /* flexbox를 사용하여 수평 배치 */
+  justify-content: center; /* 가운데 정렬 */
+  align-items: center; /* 아이콘과 텍스트 세로 정렬 */
+  gap: 10px; /* 아이콘과 텍스트 사이의 간격 설정 */
+  margin-bottom: 30px;
+  margin-top: 0;
+}
+
+.sun-icon {
+  width: 100px;
+  height: 100px;
+}
+
+.forecast-text {
+  font-size: 24px;
+  text-align: left;
+  color: #333;
+  font-weight: bold;
+  margin-left: 20px;
+  font-size: 1.8em;
+}
+
+.highlighted {
+  color: #f17c66;
+}
+
+.nasdaq-section {
+  display: flex;
+  justify-content: space-between;
+  /* margin-top: 20px; */
+}
+.nasdaq-section-title {
+  padding-bottom: 10px;
+  color: rgb(46, 95, 151);
+}
+.nasdaq-graph {
+  flex: 1;
+  margin-right: 50px;
+}
+
+.nasdaq-graph p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.graph-placeholder {
+  width: 100%;
+  height: 350px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+}
+
+.nasdaq-info {
+  flex: 1;
+}
+
+.nasdaq-info p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.company-name {
+  color: rgb(83, 133, 228); /* 파란색으로 텍스트 색상 지정 */
+}
+
+.company-info {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  width: 100%;
+  height: 350px;
+}
+
+.company-card {
+  padding: 18px; /* 카드 패딩 조절 */
+  background-color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+  height: 120px;
+}
+
+.company-card:hover {
+  transform: scale(1.05);
+}
+
+.company-card h3 {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.company-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+.company-card .rank, .company-card .industry {
+  font-size: 0.8em;
+  color: #9da4c5;
+  margin-bottom: 10px;
+  /* font-weight: bold; */
+}
+
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 700px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.modal-body {
+  font-size: 16px;
+  color: #333;
+}
+
+.price-change {
+  color: #f17c66;
+  font-weight: bold;
+}
+
+.modalh2 {
+  font-size : 1.5em;
+}
+.info-icon {
+  width: 15px;
+  height: 15px;
+  vertical-align: middle; /* 텍스트와 아이콘을 수평으로 맞추기 */
+}
+
+.info-inline-block {
+  display: inline-block;
+  vertical-align: middle; /* 아이콘과 텍스트를 수평으로 맞추기 */
+  margin-left: 5px; /* 아이콘과 텍스트 사이의 간격 조정 */
+}
+
+.info-inline-block p {
+  display: inline; /* 텍스트가 한 줄로 표시되도록 */
+  margin-left: 5px; /* 텍스트 주변 여백 없애기 */
+  font-weight: bold;
+}
+.modal-description {
+  font-size: 0.9em;
+  color: rgb(83, 83, 83);
+}
