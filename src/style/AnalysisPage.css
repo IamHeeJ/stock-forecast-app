@@ -114,7 +114,7 @@
 }
 
 .company-card {
-  padding: 18px; /* 카드 패딩 조절 */
+  padding: 18px; 
   background-color: #fff;
   border-radius: 8px;
   text-align: center;

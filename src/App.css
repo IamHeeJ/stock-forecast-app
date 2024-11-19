@@ -27,11 +27,15 @@ h2 {
 }
 
 #description {
-  margin : 20px;
+  /* margin : 10px; */
   padding : 10px;
   font-size: 1.2em;
   font-weight: bold;
   color : rgb(132, 141, 175);
+}
+
+.btncontainer {
+  margin-bottom: 15px;
 }
 
 .button-link {
@@ -80,4 +84,46 @@ h2 {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+
+
+/* AnalysisPage.css에 추가 */
+
+.price-change.positive {
+  color: #f17c66;
+  font-weight: bold;
+}
+
+.price-change.negative {
+  color: #4A90E2;
+  font-weight: bold;
+}
+
+/* Add this to your AnalysisPage.css */
+
+.nasdaq-whole-page {
+  text-align: center;
+}
+
+.nasdaq-whole-graph-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: white; */
+  padding: 20px;
+}
+
+.nasdaq-whole-graph {
+  width: 70%;
+  height:400px;
+}
+
+.nasdaq-whole-title {
+  font-size: 1.3em;
+}
+
+.predict-link {
+  font-weight: bold;
+  color: #506991;
 }

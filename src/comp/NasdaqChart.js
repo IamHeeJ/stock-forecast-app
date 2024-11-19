@@ -54,3 +54,4 @@ const NasdaqChart = () => {
 };
 
 export default NasdaqChart;
+
