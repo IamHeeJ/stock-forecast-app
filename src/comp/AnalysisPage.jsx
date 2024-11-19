@@ -7,18 +7,6 @@ function AnalysisPage() {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedCompany, setSelectedCompany] = useState(null);
 
-  // const companies = [
-  //   { rank: 1, symbol: 'AAPL', name: '애플', description: '애플은 혁신적인 기술 기업으로, 아이폰, 아이패드, 맥북 등의 제품을 출시한 세계적인 브랜드입니다.' },
-  //   { rank: 2, symbol: 'MSFT', name: '마이크로소프트', description: '마이크로소프트는 소프트웨어 개발 및 클라우드 서비스를 제공하는 글로벌 기술 기업입니다.' },
-  //   { rank: 3, symbol: 'GOOGL', name: '구글', description: '구글은 검색 엔진을 제공하는 회사로, 광고 및 클라우드 서비스 분야에서도 큰 영향을 미칩니다.' },
-  //   { rank: 4, symbol: 'AMZN', name: '아마존', description: '아마존은 전자상거래 및 클라우드 컴퓨팅 분야의 선두주자입니다.' },
-  //   { rank: 5, symbol: 'TSLA', name: '테슬라', description: '테슬라는 전기차 제조업체로, 지속 가능한 에너지 솔루션을 제공하는 혁신적인 기업입니다.' },
-  //   { rank: 6, symbol: 'META', name: '메타', description: '메타(구 페이스북)는 소셜 미디어와 가상 현실 기술을 개발하는 글로벌 기업입니다.' },
-  //   { rank: 7, symbol: 'NVDA', name: '엔비디아', description: '엔비디아는 그래픽 카드와 AI 하드웨어를 제조하는 기술 회사입니다.' },
-  //   { rank: 8, symbol: 'NFLX', name: '넷플릭스', description: '넷플릭스는 스트리밍 서비스 분야에서 글로벌 리더로, 다양한 영화와 드라마 콘텐츠를 제공합니다.' },
-  //   { rank: 9, symbol: 'ADBE', name: '어도비', description: '어도비는 창작 및 디자인 소프트웨어 분야의 선도적인 기업으로, 포토샵과 일러스트레이터로 유명합니다.' },
-  //   { rank: 10, symbol: 'INTC', name: '인텔', description: '인텔은 반도체 제조업체로, 컴퓨터 프로세서 및 관련 기술을 개발하는 글로벌 기업입니다.' }
-  // ];
   const companies = [
     { rank: 1, symbol: 'AAPL', name: '애플', description: '애플은 혁신적인 기술 기업으로, 아이폰, 아이패드, 맥북 등의 제품을 출시한 세계적인 브랜드입니다.' },
     { rank: 2, symbol: 'MSFT', name: '마이크로소프트', description: '마이크로소프트는 소프트웨어 개발 및 클라우드 서비스를 제공하는 글로벌 기술 기업입니다.' },

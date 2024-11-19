@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../style/AnalysisPage.css';
+import CategoryChart from './CategoryChart.js'; 
 
 function CategoryPage() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -52,7 +53,8 @@ function CategoryPage() {
         <div className="nasdaq-section">
           <div className="nasdaq-graph">
             <p className="nasdaq-section-title">산업 분야별 10개 기업 주가 예측 비교</p>
-            <div className="graph-placeholder"></div>
+            {/* <div className="graph-placeholder"></div> */}
+            <CategoryChart/>
           </div>
 
           <div className="nasdaq-info">
