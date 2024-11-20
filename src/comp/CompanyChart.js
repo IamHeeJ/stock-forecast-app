@@ -74,11 +74,11 @@ const CompanyChart = ({ symbol, data }) => {
                         labelFormatter={(date) => `날짜: ${date}`}
                     />
                     <Line
-                        type="monotone"
+                        type="linear"
                         dataKey="value"
                         stroke={colorMap[symbol]}
                         name={symbol}
-                        dot={false}
+                        dot={true}
                         strokeWidth={2}
                     />
                 </LineChart>
