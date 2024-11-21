@@ -3,29 +3,55 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Link } from 'react-router-dom';
 import '../style/AnalysisPage.css';
 
+// const data = [
+//     { date: '2024-10-30', Actual: 18607.93, Predicted: 18608.46 },
+//     { date: '2024-10-31', Actual: 18095.15, Predicted: 18095.14 },
+//     { date: '2024-11-01', Actual: 18239.92, Predicted: 18239.64 },
+//     { date: '2024-11-04', Actual: 18179.98, Predicted: 18180.23 },
+//     { date: '2024-11-05', Actual: 18439.17, Predicted: 18330.42 },
+//     { date: '2024-11-06', Actual: 18983.47, Predicted: 18394.53 },
+//     { date: '2024-11-07', Actual: 19269.46, Predicted: 18466.10 },
+//     { date: '2024-11-08', Actual: 19286.78, Predicted: 18417.58 },
+//     { date: '2024-11-11', Actual: 19298.76, Predicted: 18413.73 },
+//     { date: '2024-11-12', Actual: 19281.40, Predicted: 18390.52 },
+//     { date: '2024-11-13', Actual: 19230.72, Predicted: 18400.27 },
+//     { date: '2024-11-14', Actual: 19107.65, Predicted: 18432.38 },
+//     { date: '2024-11-15', Actual: 18680.12, Predicted: 17576.04 },
+//     { date: '2024-11-18', Actual: 18791.81, Predicted: 17578.65 },
+//     { date: '2024-11-19', Actual: 18987.47, Predicted: 18112.41 },
+//     { date: '2024-11-21', Actual: null, Predicted: 18413.73 },
+//     { date: '2024-11-22', Actual: null, Predicted: 18390.52 },
+//     { date: '2024-11-23', Actual: null, Predicted: 18400.27 },
+//     { date: '2024-11-24', Actual: null, Predicted: 18432.38 },
+//     { date: '2024-11-25', Actual: null, Predicted: 17576.04 },
+//     { date: '2024-11-26', Actual: null, Predicted: 17578.65 },
+//     { date: '2024-11-27', Actual: null, Predicted: 18112.41 },
+// ];
+
 const data = [
-    { date: '2024-10-30', Actual: 18607.93, Predicted: 18608.46 },
-    { date: '2024-10-31', Actual: 18095.15, Predicted: 18095.14 },
-    { date: '2024-11-01', Actual: 18239.92, Predicted: 18239.64 },
-    { date: '2024-11-04', Actual: 18179.98, Predicted: 18180.23 },
-    { date: '2024-11-05', Actual: 18439.17, Predicted: 18330.42 },
-    { date: '2024-11-06', Actual: 18983.47, Predicted: 18394.53 },
-    { date: '2024-11-07', Actual: 19269.46, Predicted: 18466.10 },
-    { date: '2024-11-08', Actual: 19286.78, Predicted: 18417.58 },
-    { date: '2024-11-11', Actual: 19298.76, Predicted: 18413.73 },
-    { date: '2024-11-12', Actual: 19281.40, Predicted: 18390.52 },
-    { date: '2024-11-13', Actual: 19230.72, Predicted: 18400.27 },
-    { date: '2024-11-14', Actual: 19107.65, Predicted: 18432.38 },
-    { date: '2024-11-15', Actual: 18680.12, Predicted: 17576.04 },
-    { date: '2024-11-18', Actual: 18791.81, Predicted: 17578.65 },
-    { date: '2024-11-19', Actual: 18987.47, Predicted: 18112.41 },
-    { date: '2024-11-21', Actual: null, Predicted: 18413.73 },
-    { date: '2024-11-22', Actual: null, Predicted: 18390.52 },
-    { date: '2024-11-23', Actual: null, Predicted: 18400.27 },
-    { date: '2024-11-24', Actual: null, Predicted: 18432.38 },
-    { date: '2024-11-25', Actual: null, Predicted: 17576.04 },
-    { date: '2024-11-26', Actual: null, Predicted: 17578.65 },
-    { date: '2024-11-27', Actual: null, Predicted: 18112.41 },
+    { date: '2024-10-31', Actual: 18095.15, Predicted: 18171.42 },
+    { date: '2024-11-01', Actual: 18239.92, Predicted: 18239.46 },
+    { date: '2024-11-04', Actual: 18179.98, Predicted: 18123.57 },
+    { date: '2024-11-05', Actual: 18439.17, Predicted: 18439.05 },
+    { date: '2024-11-06', Actual: 18983.47, Predicted: 18983.53 },
+    { date: '2024-11-07', Actual: 19269.46, Predicted: 19260.49 },
+    { date: '2024-11-08', Actual: 19286.78, Predicted: 19286.88 },
+    { date: '2024-11-11', Actual: 19298.76, Predicted: 19070.84 },
+    { date: '2024-11-12', Actual: 19281.40, Predicted: 19170.78 },
+    { date: '2024-11-13', Actual: 19230.72, Predicted: 19230.62 },
+    { date: '2024-11-14', Actual: 19107.65, Predicted: 19107.62 },
+    { date: '2024-11-15', Actual: 18680.12, Predicted: 18679.98 },
+    { date: '2024-11-18', Actual: 18791.81, Predicted: 18791.81 },
+    { date: '2024-11-19', Actual: 18987.47, Predicted: 18987.91 },
+    { date: '2024-11-20', Actual: 18966.14, Predicted: 18966.15 },
+    { date: '2024-11-21', Actual: 18966.14, Predicted: 18966.15 },
+    { date: '2024-11-22', Actual: null, Predicted: 19170.78 },
+    { date: '2024-11-23', Actual: null, Predicted: 19230.62 },
+    { date: '2024-11-24', Actual: null, Predicted: 19107.62 },
+    { date: '2024-11-25', Actual: null, Predicted: 18679.98 },
+    { date: '2024-11-26', Actual: null, Predicted: 18791.81 },
+    { date: '2024-11-27', Actual: null, Predicted: 18987.91 },
+    { date: '2024-11-28', Actual: null, Predicted: 18966.15 },
 ];
 
 
@@ -77,8 +103,8 @@ function PredictScore() {
                     </div>
                 </div>
 
-                <p className="predict-score-description">10/30 ~ 11/5까지 실제 주가와 예측 주가가 비슷하게 변화를 보이나, 이후 실제 값과 차이를 보인다. </p>
-                <p className="predict-score-description">하지만 크게 상승하거나 하락하는 방향성에 대해서는 비슷한 양상을 예측한 것에 주목할만하다.</p>
+                <p className="predict-score-description">일시적으로 실제 주가와 차이가 나는 부분이 있으나, 대체로 모델이 예측한 값이 실제 값에 가까운 좋은 성능을 보인다. </p>
+                {/* <p className="predict-score-description">하지만 크게 상승하거나 하락하는 방향성에 대해서는 비슷한 양상을 예측한 것에 주목할만하다.</p> */}
 
             </div>
         </div>

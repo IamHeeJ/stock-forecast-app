@@ -60,8 +60,8 @@ def process_ticker(ticker):
     targets = []
 
     for i in range(len(data) - train_window_size - forecast_days):
-        feature = data[['Open', 'High', 'Low', 'Volume', 'MA_5', 'MA_10', 'Volume_Change']].iloc[i:i + train_window_size].values.flatten()
-        target = data['Close'].iloc[i + train_window_size:i + train_window_size + forecast_days].values
+        feature = data[['Open', 'High', 'Low', 'Close', 'Volume', 'MA_5', 'MA_10', 'Volume_Change']].iloc[i:i + train_window_size].values.flatten()
+        target = data['Adj Close'].iloc[i + train_window_size:i + train_window_size + forecast_days].values
         if len(target) == forecast_days:  # 타겟 데이터의 크기가 올바른지 확인
             features.append(feature)
             targets.append(target)
@@ -73,10 +73,10 @@ def process_ticker(ticker):
     X_train = features[:-forecast_days]
     y_train = targets[:-forecast_days]
     X_test = features[-forecast_days:]
-    y_test = targets[-forecast_days:]
+    y_test = targets[-forecast_days:].flatten()  # 1차원 배열로 변환
 
     # 하이퍼파라미터 설정 (적절히 축소)
-    model = XGBRegressor(objective='reg:squarederror', n_estimators=500, min_child_weight=1, learning_rate=0.05, max_depth=3, reg_alpha=1)
+    model = XGBRegressor(objective='reg:squarederror', n_estimators=2000, min_child_weight=5, gamma=0.1, learning_rate=0.02, max_depth=3, reg_alpha=1)
     model.fit(X_train, y_train)
 
     # 교차 검증
@@ -85,7 +85,7 @@ def process_ticker(ticker):
     print(f"{ticker} Cross-validated MSE: {-mean_score}")
 
     # 예측
-    predictions = model.predict(X_test)
+    predictions = model.predict(X_test).flatten()  # 예측 결과를 1차원 배열로 변환
 
     # 성능 평가
     mse = mean_squared_error(y_test, predictions)
@@ -94,9 +94,17 @@ def process_ticker(ticker):
     print(f'{ticker} Mean Absolute Error: {mae}')
 
     # 마지막 한 달의 데이터를 사용해 다음 일주일간의 종가 예측
-    latest_data = data[['Open', 'High', 'Low', 'Volume', 'MA_5', 'MA_10', 'Volume_Change']].tail(train_window_size).values.flatten().reshape(1, -1)
+    latest_data = data[['Open', 'High', 'Low', 'Close', 'Volume', 'MA_5', 'MA_10', 'Volume_Change']].tail(train_window_size).values.flatten().reshape(1, -1)
     next_week_prediction = model.predict(latest_data).flatten()
-    print(f'{ticker} Predicted close prices for the next week: {next_week_prediction}')
+
+    # 다음 일주일 간의 날짜 생성
+    future_dates = [now + timedelta(days=i) for i in range(1, 8)]
+    future_dates_str = [date.strftime('%Y-%m-%d') for date in future_dates]
+
+    # DataFrame으로 변환
+    next_week_prediction_df = pd.DataFrame(next_week_prediction, index=future_dates_str, columns=[ticker])
+
+    print(f'{ticker} Predicted adjusted close prices for the next week: {next_week_prediction_df}')
 
     # 최근 1주일치 실제 데이터 다운로드
     actual_data = download_data(ticker, max_retries=1)
@@ -110,33 +118,36 @@ def process_ticker(ticker):
     y_predindex = [(now - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(7, 0, -1)]
     y_test = pd.DataFrame(actual_data['Adj Close'])
     y_test = y_test.reindex(y_predindex)
-    y_pred = pd.DataFrame(next_week_prediction, index=y_test.index, columns=[ticker])
+    y_test = y_test.dropna()  # 결측값 제거
+    predictions = predictions[:len(y_test)]  # 길이 일치화
+    y_pred = pd.DataFrame(predictions, index=y_test.index, columns=[ticker])
 
     # 모델 성능 데이터 추가
     global performance_data_list
     for date in y_predindex:
-        performance_data_list.append({
-            'Ticker': ticker,
-            'Date': date,
-            'Actual': y_test.at[date, 'Adj Close'],
-            'Predicted': y_pred.at[date, ticker],
-            'MSE': mse,
-            'MAE': mae
-        })
+        if date in y_test.index:
+            performance_data_list.append({
+                'Ticker': ticker,
+                'Date': date,
+                'Actual': y_test.at[date, 'Adj Close'],
+                'Predicted': y_pred.at[date, ticker],
+                'MSE': mse,
+                'MAE': mae
+            })
 
     # 시각화
     plt.figure(figsize=(14, 7))
-    plt.plot(y_test.index, y_test['Adj Close'], label=f'{ticker} Actual Close Prices')
-    plt.plot(y_pred.index, y_pred[ticker], label=f'{ticker} Predicted Close Prices', linestyle='--')
+    plt.plot(y_test.index, y_test['Adj Close'], label=f'{ticker} Actual Adjusted Close Prices')
+    plt.plot(y_pred.index, y_pred[ticker], label=f'{ticker} Predicted Adjusted Close Prices', linestyle='--')
     plt.xlabel('Date')
-    plt.ylabel('Close Price')
-    plt.title(f'{ticker} Actual vs Predicted Close Prices')
+    plt.ylabel('Adjusted Close Price')
+    plt.title(f'{ticker} Actual vs Predicted Adjusted Close Prices')
     plt.legend()
     plt.show()
 
     # 최근 15일 종가 데이터 추가
     recent_data = data[['Adj Close']].tail(15).rename(columns={'Adj Close': ticker})
-    return recent_data, y_pred
+    return recent_data, next_week_prediction_df  # 다음 일주일 예측 데이터를 반환
 
 results = []
 predictions = []
